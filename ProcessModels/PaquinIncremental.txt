@@ -1,0 +1,50 @@
+//Incremental Process model -- Collin Paquin
+
+Iteration 1: Timeline: 3 weeks
+1. Requirements Gathering and Analysis:
+    Gather requirements for the scheduling system.
+    Record the non-functional and functional requirments of the project
+2. System Design:
+    Design the basic system architecture and database structure.
+    Create a simple user interface for student registration and course addition.
+    Develop basic functionalities for student registration and course management.
+3. Implementation:
+    Code the components related to student registration and course addition.
+    Implement basic user management, allowing students to create accounts and add courses.
+    Develop a basic database structure to store user and admin information and course details.
+4. Testing:
+    Perform testing on the implemented functionalities.
+    Verify that student registration and course addition are working as intended.
+    Identify and fix any defects or issues found during testing.
+
+Iteration 2: Timeline: 4 weeks
+1. Requirements Refinement:
+    Review the initial requirements and gather additional requirements.
+    Refine and update the existing requirements based on feedback and new insights.
+2. System Design:
+    Enhance the system architecture and database structure based on the refined requirements.
+    Design additional user interfaces for schedule management and course search functionalities.
+3. Implementation:
+    Code the components related to schedule management and course search functionalities.
+    Implement advanced user management, including login and authentication.
+    Expand the database structure to accommodate schedule and course information.
+4. Testing:
+    Perform testing on the new functionalities.
+    Verify that schedule management and course search functionalities are working correctly.
+    Confirm the integration between new and existing functionalities.
+
+Iteration 3: Timeline: 4 weeks
+1. Requirements Refinement:
+    Review the requirements gathered so far and gather any remaining requirements.
+    Update and refine the requirements based on user feedback and system progress.
+2. System Design:
+    Further enhance the system architecture and user interfaces based on refined requirements.
+    Design administrative functionalities for the admin user type.
+3. Implementation:
+    Code the components related to admin functionalities, such as course management and user management.
+    Implement additional features, such as printing schedules and generating rosters.
+    Enhance the database structure to support administrative tasks.
+4. Testing:
+    Perform testing on the newly implemented functionalities.
+    Verify the correctness and usability of admin functionalities.
+    Conduct thorough integration testing to ensure all components work harmoniously.
