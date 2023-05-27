@@ -1,1 +1,47 @@
-Testing
+//WaterFall Process model -- Collin Paquin
+
+1. Understanding/gathering requirments:
+TIMELINE: 2 Weeks
+* Meet with group to get an understanding of what knowledge we already have.
+* Record the non-functional and functional requirments of the project
+* Requirments for databases, structual, user types and system functionalities.
+
+2. System Design:
+TIMELINE: 2 Weeks
+* Design the system architecture, database structure, user interfaces, and system module
+* Define the relationships between the different entities in the database, such as users, courses, and schedules.
+* Do the same for the main program.
+* Create a mock up for what the user interface will look like.
+
+3. Implementation:
+TIMELINE: 3 Weeks
+* Code the components based on the design of the system.
+* Develop the database functionality, including creating tables, relationships, and queries.
+* Implement the user interfaces for different user types (student, instructor, admin). This could be a decision point.
+* Implement functionalities such as course search, schedule generation, and administrative tasks.
+
+4. Testing:
+TIMELINE: 1 Week
+* Preform testing to make sure each component fuctions as it should.
+* Preform intergration testing to verify components work with one another.
+* Test the system against the defined requirements and use cases.
+* Identify and fix any defects or issues found during testing.
+
+5. Integration:
+TIMELINE: 2 Weeks
+* Intergrate individual components together to create the system.
+* Validate that the modules all work as inteded against the requirments.
+* Adress any Integration issues or conflicts.
+
+6. Documentation:
+TIMELINE: 1 Week
+* Document the system architecture, database structure, and user workflows.
+* Provide instructions for system installation & configuration.
+* Include troubleshooting guides to assist users and administrators.
+
+7. Deployment:
+TIMELINE: 1 Week
+* Configure the necessary servers, databases, and infrastructure.
+* Perform final testing to ensure the system works as expected.
+* Roll out the scheduling system to the intended users.
+* Provide training and support for users and administrators.
