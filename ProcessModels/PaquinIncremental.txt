@@ -48,3 +48,7 @@ Iteration 3: Timeline: 4 weeks
     Perform testing on the newly implemented functionalities.
     Verify the correctness and usability of admin functionalities.
     Conduct thorough integration testing to ensure all components work harmoniously.
+
+%%% In my interpretation I thought we would need way more iterations, essentially a new iteration for each major function. Your interpretation may be
+%%% a better way to do it since some functions can have overlapped testing, so it wouldn't make sense to finish and test each new function individually
+%%% when it's possible to test multiple at once and save time

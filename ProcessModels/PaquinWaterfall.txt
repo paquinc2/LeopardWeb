@@ -1,4 +1,5 @@
 //WaterFall Process model -- Collin Paquin
+%%% Dylan's edits
 
 1. Understanding/gathering requirments:
 TIMELINE: 2 Weeks
@@ -32,12 +33,14 @@ TIMELINE: 2 Weeks
     Intergrate individual components together to create the system.
     Validate that the modules all work as inteded against the requirments.
     Adress any Integration issues or conflicts.
+%%% Perhaps address the ways to implement the system, such as through a GUI, and if so by what means
 
 6. Documentation:
 TIMELINE: 1 Week
     Document the system architecture, database structure, and user workflows.
     Provide instructions for system installation & configuration.
     Include troubleshooting guides to assist users and administrators.
+%%% Good idea here. Additionally, having short explanations of each individual function may also help (see the small text below each link on the real leopard web website)
 
 7. Deployment:
 TIMELINE: 1 Week
