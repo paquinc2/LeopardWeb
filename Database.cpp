@@ -98,7 +98,7 @@ int Database::db_script() {
 		//*************************************
 		// Removing an instructor
 		//*************************************
-		sql = "DELETE FROM INSTRUCTOR WHERE ID = 10009;";
+		sql = "DELETE FROM INSTRUCTOR WHERE ID = 20006;";
 		exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 
 		if (exit != SQLITE_OK) {
@@ -112,7 +112,7 @@ int Database::db_script() {
         // Adding two students
         //*************************************
 		sql = ("INSERT INTO STUDENT VALUES(10011, 'Dylan', 'OBrien', 2024, 'BSCO', 'obriend7');"
-			"INSERT INTO STUDENT VALUES(10012, 'Collin', 'Paquin', 2024, 'BSME', 'paquinc');"
+			"INSERT INTO STUDENT VALUES(10012, 'Collin', 'Paquin', 2024, 'BSCO', 'paquinc');"
 		);
 
 		exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
