@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="Database.cpp" />
     <ClCompile Include="Instructor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sqlite3\sqlite3.c" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Database.h" />
     <ClInclude Include="Instructor.h" />
     <ClInclude Include="sqlite3\sqlite3.h" />
     <ClInclude Include="Student.h" />

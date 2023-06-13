@@ -6,115 +6,18 @@
 #include "Student.h"
 #include "Instructor.h"
 #include "Admin.h"
+#include "Database.h"
 
 using std::cout;
 using std::cin;
 
 using namespace std;
 
-/*************************************************************************************************
- The callback() function is invoked for each result row coming out of the evaluated SQL statement
- 1st argument - the 4th argument provided by sqlite3_exec() and is typically not used
- 2nd argument - number of columns in the result
- 3rd argument - an array of strings containing the fields in that row
- 4th argument - an array of strings containing the names of the columns
-*************************************************************************************************/
-static int callback(void* data, int argc, char** argv, char** azcolname)
-{
-	int i;
-
-	for (i = 0; i < argc; i++)
-	{
-		printf("%s = %s\n", azcolname[i], argv[i] ? argv[i] : "null");
-	}
-
-	printf("\n");
-
-	return 0;
-}
 
 int main(int argc, char** argv) {
 	
-	//*************************************
-	// Define and open the database
-	//*************************************
-	sqlite3* DB;
-	int exit = 0;
-	exit = sqlite3_open("assignment3.db", &DB);
-
-	if (exit) {
-		std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
-		return (-1);
-	}
-	else
-		std::cout << "Opened Database Successfully!" << std::endl;
-
-	//*************************************
-	// Creating a course table
-	// Time is in military time
-	//*************************************
-
-	string table = "CREATE TABLE COURSES("
-	"CRN INTEGER PRIMARY KEY, "
-	"TITLE TEXT NOT NULL, "
-	"DEPARTMENT TEXT NOT NULL, "
-	"TIME TEXT NOT NULL, "
-	"DAYS TEXT NOT NULL, "
-	"SEMESTER TEXT NOT NULL, "
-	"YEAR INTEGER NOT NULL, "
-	"CREDITS INTEGER NOT NULL); ";
-
-	char* messageError;
-
-	// execute the create table command
-	// sqlite3_exec( pointer to database file, string for sql command, callback function (used to respond to queries, not used here), input to callback, error message address)
-	exit = sqlite3_exec(DB, table.c_str(), NULL, 0, &messageError);
-
-	if (exit != SQLITE_OK)
-	{
-		std::cerr << "Error Create Table" << std::endl;
-		sqlite3_free(messageError);
-	}
-	else
-		cout << "Table created Successfully" << std::endl;
-
-	//*************************************
-	// Populating courses table
-	//*************************************
-	string sql("INSERT INTO COURSES VALUES(1, 'ADA', 'LOVELACE', 1815);"
-		"INSERT INTO PROGRAMMER VALUES(2, 'GRACE', 'HOPPER', 1906);"
-		"INSERT INTO PROGRAMMER VALUES(3, 'MARY KENNETH', 'KELLER', 1913);"
-		"INSERT INTO PROGRAMMER VALUES(4, 'EVELYN', 'BOYD GRANVILLE', 1924);"
-		"INSERT INTO PROGRAMMER VALUES(6, 'CAROL', 'SHAW', 1955);"
-	);
-
-	// execute the command
-	exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-
-	if (exit != SQLITE_OK)
-	{
-		std::cerr << "Error Insert" << std::endl;
-		sqlite3_free(messageError);
-	}
-	else
-		std::cout << "Records created Successfully!" << std::endl;
-
-
-		
-	/***********************************************
-    print all data in the table with SELECT * FROM
-	create string with query then execute
-	**********************************************/
-	
-	string query = "SELECT * FROM PROGRAMMER;";
-
-	cout << endl << query << endl;		//print the string to screen
-
-	// you need the callback function this time since there could be multiple rows in the table
-	sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-
-	sqlite3_close(DB);
-	
+	Database database("test1.db");
+	database.db_script();
 
 	string firstname;
 	string lastname;
