@@ -39,6 +39,7 @@ int Database::db_script() {
 		sqlite3* DB;
 		int exit = 0;
 		exit = sqlite3_open(db_name, &DB);
+		char* messageError;
 
 		if (exit) {
 			std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
@@ -46,6 +47,10 @@ int Database::db_script() {
 		}
 		else
 			std::cout << "Opened Database Successfully!" << std::endl;
+
+		////Delete table
+		//string sql = "DROP TABLE COURSES;";
+		//exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
 
 		//*************************************
 		// Creating a course table
@@ -60,8 +65,6 @@ int Database::db_script() {
 			"SEMESTER TEXT NOT NULL, "
 			"YEAR INTEGER NOT NULL, "
 			"CREDITS INTEGER NOT NULL); ";
-
-		char* messageError;
 
 		// execute the create table command
 		// sqlite3_exec( pointer to database file, string for sql command, callback function (used to respond to queries, not used here), input to callback, error message address)
@@ -78,11 +81,11 @@ int Database::db_script() {
 		//*************************************
 		// Populating courses table
 		//*************************************
-		string sql("INSERT INTO COURSES VALUES(33946, 'ADVANCED DIGITAL CIRCUIT DESIGN', 'ELECTRICAL ENGINEERING', '8:00 AM - 9:20 AM', 'WEDNESDAY, FRIDAY', 'SUMMER', 2023, 4);"
-			"INSERT INTO COURSES VALUES(33950, 'APPLIED PROGRAMMING CONCEPTS', 'ELECTRICAL ENGINEERING', '8:00 AM - 9:50 AM', 'TUESDAY, THURSDAY', 'SUMMER', 2023, 3);"
-			"INSERT INTO COURSES VALUES(33817, 'ALGORITHMS', 'COMPUTER SCIENCE', '11:00 AM - 12:20 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
-			"INSERT INTO COURSES VALUES(33955, 'COMPUTER NETWORKS', 'ELECTRICAL ENGINEERING', '12:30 PM - 1:50 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
-			"INSERT INTO COURSES VALUES(33959, 'SIGNALS AND SYSTEMS', 'ELECTRICAL ENGINEERING', '1:00 PM - 2:50 PM', 'TUESDAY, THURSDAY', 'SUMMER', 2023, 4);"
+		sql = ("INSERT INTO COURSES VALUES(33946, 'ADVANCED DIGITAL CIRCUIT DESIGN', 'BSEE', '8:00 AM - 9:20 AM', 'WEDNESDAY, FRIDAY', 'SUMMER', 2023, 4);"
+			"INSERT INTO COURSES VALUES(33950, 'APPLIED PROGRAMMING CONCEPTS', 'BSCO', '8:00 AM - 9:50 AM', 'TUESDAY, THURSDAY', 'SUMMER', 2023, 3);"
+			"INSERT INTO COURSES VALUES(33817, 'ALGORITHMS', 'BSCS', '11:00 AM - 12:20 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
+			"INSERT INTO COURSES VALUES(33955, 'COMPUTER NETWORKS', 'BSCO', '12:30 PM - 1:50 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
+			"INSERT INTO COURSES VALUES(33959, 'SIGNALS AND SYSTEMS', 'BSEE', '1:00 PM - 2:50 PM', 'TUESDAY, THURSDAY', 'SUMMER', 2023, 4);"
 		);
 
 		exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
@@ -139,6 +142,23 @@ int Database::db_script() {
 		}
 		else
 			std::cout << "Records updated Successfully!" << std::endl;
+
+		//*************************************
+        // Linking instructors to courses
+        //*************************************
+
+		sql = "SELECT NAME FROM assignment3.db.INSTRUCTOR AS ;";
+
+		//sql = "UPDATE ADMIN SET TITLE = 'Vice-President' WHERE NAME = 'Vera';";
+		//exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+
+		//if (exit != SQLITE_OK)
+		//{
+		//	std::cerr << "Error Update" << std::endl;
+		//	sqlite3_free(messageError);
+		//}
+		//else
+		//	std::cout << "Records updated Successfully!" << std::endl;
 
 		/***********************************************
 		print all data in the table with SELECT * FROM
