@@ -152,28 +152,17 @@ int Database::db_script() {
 		cout << endl << query << endl;
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
-		//sql = "UPDATE ADMIN SET TITLE = 'Vice-President' WHERE NAME = 'Vera';";
-		//exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-
-		//if (exit != SQLITE_OK)
-		//{
-		//	std::cerr << "Error Update" << std::endl;
-		//	sqlite3_free(messageError);
-		//}
-		//else
-		//	std::cout << "Records updated Successfully!" << std::endl;
-
 		/***********************************************
 		print all data in the table with SELECT * FROM
 		create string with query then execute
 		**********************************************/
 
-		query = "SELECT * FROM STUDENT;";
+		query = "SELECT ID FROM STUDENT;";
 		cout << endl << query << endl;		//print the string to screen
 		// you need the callback function this time since there could be multiple rows in the table
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
-		query = "SELECT * FROM INSTRUCTOR;";
+		query = "SELECT Hireyear FROM INSTRUCTOR;";
 		cout << endl << query << endl;		//print the string to screen
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
