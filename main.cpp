@@ -16,7 +16,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 	
-	Database database("test1.db");
+	Database database("assignment3.db");
 	database.db_script();
 
 	string firstname;
