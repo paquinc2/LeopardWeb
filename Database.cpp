@@ -81,7 +81,7 @@ int Database::db_script() {
 		//*************************************
 		// Populating courses table
 		//*************************************
-		sql = ("INSERT INTO COURSES VALUES(33946, 'ADVANCED DIGITAL CIRCUIT DESIGN', 'BSEE', '8:00 AM - 9:20 AM', 'WEDNESDAY, FRIDAY', 'SUMMER', 2023, 4);"
+		string sql = ("INSERT INTO COURSES VALUES(33946, 'ADVANCED DIGITAL CIRCUIT DESIGN', 'BSEE', '8:00 AM - 9:20 AM', 'WEDNESDAY, FRIDAY', 'SUMMER', 2023, 4);"
 			"INSERT INTO COURSES VALUES(33950, 'APPLIED PROGRAMMING CONCEPTS', 'BSCO', '8:00 AM - 9:50 AM', 'TUESDAY, THURSDAY', 'SUMMER', 2023, 3);"
 			"INSERT INTO COURSES VALUES(33817, 'ALGORITHMS', 'BSCS', '11:00 AM - 12:20 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
 			"INSERT INTO COURSES VALUES(33955, 'COMPUTER NETWORKS', 'BSCO', '12:30 PM - 1:50 PM', 'MONDAY, WEDNESDAY', 'SUMMER', 2023, 4);"
@@ -147,7 +147,10 @@ int Database::db_script() {
         // Linking instructors to courses
         //*************************************
 
-		sql = "SELECT NAME FROM assignment3.db.INSTRUCTOR AS ;";
+		//string query = "SELECT COURSES.TITLE FROM COURSES WHERE COURSES.DEPARTMENT = INSTRUCTOR.DEPT;";
+		string query = "SELECT I.NAME, I.SURNAME, C.TITLE FROM INSTRUCTOR I INNER JOIN COURSES C ON DEPARTMENT = DEPT;";
+		cout << endl << query << endl;
+		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
 		//sql = "UPDATE ADMIN SET TITLE = 'Vice-President' WHERE NAME = 'Vera';";
 		//exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
@@ -165,7 +168,7 @@ int Database::db_script() {
 		create string with query then execute
 		**********************************************/
 
-		string query = "SELECT * FROM STUDENT;";
+		query = "SELECT * FROM STUDENT;";
 		cout << endl << query << endl;		//print the string to screen
 		// you need the callback function this time since there could be multiple rows in the table
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
