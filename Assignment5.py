@@ -1,6 +1,8 @@
 import sqlite3
 
-# Class representing a Course
+##################################################################################
+####################### Creating Classes #########################################
+##################################################################################
 class Course:
     def __init__(self, course_id, course_code, course_name, instructor):
         self.course_id = course_id
@@ -8,7 +10,6 @@ class Course:
         self.course_name = course_name
         self.instructor = instructor
 
-# Base class representing a User
 class User:
     def __init__(self, db_connection):
         self.db_connection = db_connection
@@ -17,7 +18,6 @@ class User:
         # This method is implemented by the subclasses
         raise NotImplementedError("Subclasses must implement the authenticate method.")
 
-# Subclass representing an Admin
 class Admin(User):
     def authenticate(self, username, password):
         cursor = self.db_connection.cursor()
@@ -43,7 +43,6 @@ class Admin(User):
         cursor.execute("DELETE FROM Courses WHERE course_id = ?", (course_id,))
         self.db_connection.commit()
 
-# Subclass representing an Instructor
 class Instructor(User):
     def authenticate(self, username, password):
         cursor = self.db_connection.cursor()
@@ -70,7 +69,6 @@ class Instructor(User):
             print(f"Instructor: {course[2]}")
             print()
 
-# Subclass representing a Student
 class Student(User):
     def authenticate(self, username, password):
         cursor = self.db_connection.cursor()
@@ -93,7 +91,9 @@ class Student(User):
         results = cursor.fetchall()
         return results
 
-# Function to display the menu based on user type
+##################################################################################
+####################### Menu Functions ###########################################
+##################################################################################
 def display_menu(user_type):
     print("MENU:")
     print("1. Add course to semester schedule")
@@ -111,7 +111,9 @@ db_connection = sqlite3.connect("assignment5.db")
 
 # Creating tables
 cursor = db_connection.cursor()
-
+##################################################################################
+####################### Creating Tables ##########################################
+##################################################################################
 # Creating Admin table
 cursor.execute("CREATE TABLE IF NOT EXISTS Admin ("
                "admin_id INTEGER PRIMARY KEY,"
@@ -175,7 +177,9 @@ while True:
 print("Authentication successful!")
 print(f"Welcome, {user.user_type} {user.user_data[1]}!")
 
-# Main menu loop
+##################################################################################
+####################### Main Menu Loop ###########################################
+##################################################################################
 while True:
     display_menu(user.user_type)
 
