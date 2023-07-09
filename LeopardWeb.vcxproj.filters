@@ -57,4 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assignment5.py">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

@@ -1,13 +1,30 @@
 import sqlite3
 
+#####Add/remove course from semester schedule (based on course ID number).
+#Assemble and print course roster (instructor).
+#####Add/remove courses from the system (admin).
+#Log-in, log-out (all users).
+#Search all courses (all users) .
+#####Search courses based on parameters (all users) – you should be able to enter the parameters such as course code, day/time, etc.
+#A menu to implement the use-cases.
+#####Edit classes as necessary to reflect the class diagrams
+
+
 ##################################################################################
 ####################### Creating Classes #########################################
 ##################################################################################
+# Note: changed time to military time
 class Course:
-    def __init__(self, course_id, course_code, course_name, instructor):
-        self.course_id = course_id
-        self.course_code = course_code
-        self.course_name = course_name
+    def __init__(self, course_CRN, course_title, course_dept, course_startTime, course_endTime, course_days, course_semester, course_year, course_credits):
+        self.course_CRN = course_CRN
+        self.course_title = course_title
+        self.course_dept = course_dept
+        self.course_startTime = course_startTime
+        self.course_endTime = course_endTime
+        self.course_days = course_days
+        self.course_semester = course_semester
+        self.course_year = course_year
+        self.course_credits = course_credits
         self.instructor = instructor
 
 class User:
@@ -21,21 +38,21 @@ class User:
 class Admin(User):
     def authenticate(self, username, password):
         cursor = self.db_connection.cursor()
-        cursor.execute("SELECT admin_id, admin_name FROM Admin WHERE username = ? AND password = ?",
+        cursor.execute("SELECT ID, NAME, SURNAME FROM ADMIN WHERE USERNAME = ? AND PASSWORD = ?",
                        (username, password))
         admin_data = cursor.fetchone()
         if admin_data:
             admin_id, admin_name = admin_data
-            self.user_type = "Admin"
+            self.user_type = "ADMIN"
             self.user_data = (admin_id, admin_name)
             return True
         return False
 
     def add_course(self, course):
         cursor = self.db_connection.cursor()
-        cursor.execute("INSERT INTO Courses (course_id, course_code, course_name, instructor) "
-                       "VALUES (?, ?, ?, ?)",
-                       (course.course_id, course.course_code, course.course_name, course.instructor))
+        cursor.execute("INSERT INTO COURSES (CRN, TITLE, DEPT, STARTTIME, ENDTIME, DAYS, SEMESTER, YEAR, CREDITS, INSTRUCTOR) "
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                       (course.course_CRN, course.course_title, course.course_name, course.instructor))
         self.db_connection.commit()
 
     def remove_course(self, course_id):
@@ -84,9 +101,9 @@ class Student(User):
 
     def search_courses(self, params):
         cursor = self.db_connection.cursor()
-        cursor.execute("SELECT course_code, course_name, instructor "
-                       "FROM Courses "
-                       "WHERE course_code LIKE ? OR course_name LIKE ?",
+        cursor.execute("SELECT CRN, TITLE, INSTRUCTOR "
+                       "FROM COURSES "
+                       "WHERE CRN LIKE ? OR TITLE LIKE ?",
                        (f"%{params}%", f"%{params}%"))
         results = cursor.fetchall()
         return results
@@ -114,33 +131,53 @@ cursor = db_connection.cursor()
 ##################################################################################
 ####################### Creating Tables ##########################################
 ##################################################################################
-# Creating Admin table
-cursor.execute("CREATE TABLE IF NOT EXISTS Admin ("
-               "admin_id INTEGER PRIMARY KEY,"
-               "admin_name TEXT,"
-               "username TEXT,"
-               "password TEXT)")
 
 # Creating Courses table
-cursor.execute("CREATE TABLE IF NOT EXISTS Courses ("
-               "course_id INTEGER PRIMARY KEY,"
-               "course_code TEXT,"
-               "course_name TEXT,"
-               "instructor TEXT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS COURSES ("
+               "CRN INTEGER PRIMARY KEY NOT NULL,"
+               "TITLE TEXT NOT NULL,"
+               "DEPT TEXT NOT NULL,"
+               "STARTTIME INTEGER NOT NULL,"
+               "ENDTIME INTEGER NOT NULL,"
+               "DAYS TEXT NOT NULL,"
+               "SEMESTER TEXT NOT NULL,"
+               "YEAR INTEGER NOT NULL,"
+               "CREDITS INTEGER NOT NULL,"
+               "INSTRUCTOR TEXT)")
+
+# Creating Admin table
+cursor.execute("CREATE TABLE IF NOT EXISTS ADMIN ("
+               "ID INTEGER PRIMARY KEY NOT NULL,"
+               "NAME TEXT NOT NULL,"
+               "SURNAME TEXT NOT NULL,"
+               "TITLE TEXT NOT NULL,"
+               "OFFICE TEXT NOT NULL,"
+               "EMAIL TEXT NOT NULL,"
+               "USERNAME TEXT NOT NULL,"
+               "PASSWORD TEXT NOT NULL)")
 
 # Creating Instructor table
-cursor.execute("CREATE TABLE IF NOT EXISTS Instructor ("
-               "instructor_id INTEGER PRIMARY KEY,"
-               "instructor_name TEXT,"
-               "username TEXT,"
-               "password TEXT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS INSTRUCTOR ("
+               "ID INTEGER PRIMARY KEY NOT NULL,"
+               "NAME TEXT NOT NULL,"
+               "SURNAME TEXT NOT NULL,"
+               "TITLE TEXT NOT NULL,"
+               "HIREYEAR TEXT NOT NULL,"
+               "DEPT TEXT NOT NULL,"
+               "EMAIL TEXT NOT NULL,"
+               "USERNAME TEXT NOT NULL,"
+               "PASSWORD TEXT NOT NULL)")
 
 # Creating Student table
-cursor.execute("CREATE TABLE IF NOT EXISTS Student ("
-               "student_id INTEGER PRIMARY KEY,"
-               "student_name TEXT,"
-               "username TEXT,"
-               "password TEXT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS STUDENT ("
+               "ID INTEGER PRIMARY KEY NOT NULL,"
+               "NAME TEXT NOT NULL,"
+               "SURNAME TEXT NOT NULL,"
+               "GRADYEAR TEXT NOT NULL,"
+               "MAJOR TEXT NOT NULL,"
+               "EMAIL TEXT NOT NULL,"
+               "USERNAME TEXT NOT NULL,"
+               "PASSWORD TEXT NOT NULL)")
 
 # Committing the changes
 db_connection.commit()
