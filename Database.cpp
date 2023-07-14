@@ -147,8 +147,8 @@ int Database::db_script() {
         // Linking instructors to courses
         //*************************************
 
-		//string query = "SELECT COURSES.TITLE FROM COURSES WHERE COURSES.DEPARTMENT = INSTRUCTOR.DEPT;";
 		string query = "SELECT I.NAME, I.SURNAME, C.TITLE FROM INSTRUCTOR I INNER JOIN COURSES C ON DEPARTMENT = DEPT;";
+		//string query = "SELECT INSTRUCTOR.NAME, INSTRUCTOR.SURNAME, COURSES.TITLE FROM INSTRUCTOR INNER JOIN COURSES ON DEPARTMENT = DEPT;";
 		cout << endl << query << endl;
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
@@ -162,7 +162,7 @@ int Database::db_script() {
 		// you need the callback function this time since there could be multiple rows in the table
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 
-		query = "SELECT Hireyear FROM INSTRUCTOR;";
+		query = "SELECT * FROM INSTRUCTOR;";
 		cout << endl << query << endl;		//print the string to screen
 		sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 

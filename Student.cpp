@@ -9,14 +9,14 @@ Student::Student(string first, string last, int id) : User(first, last, id) {
 }
 
 //Methods
-string Student::search_course(string search) {
+string Student::search_course(int CRN) {
 	cout << "Student search_course called\n";
-	return search;
+	return "Course name";
 }
-void Student::add_course(string course) {
+void Student::add_course(int CRN) {
 	cout << "Student add_course called\n";
 }
-void Student::remove_course(string course) {
+void Student::remove_course(int CRN) {
 	cout << "Student remove_course called\n";
 }
 void Student::print_schedule() {

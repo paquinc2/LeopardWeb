@@ -9,7 +9,7 @@ public:
     Instructor(string first, string last, int id);
 
     //Methods
-    string search_course(string search);
+    string search_course(int CRN);
     void print_schedule();
     void print_classlist();
 

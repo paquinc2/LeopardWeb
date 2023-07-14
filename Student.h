@@ -9,9 +9,9 @@ public:
     Student(string first, string last, int id);
 
     //Methods
-    string search_course(string search);
-    void add_course(string course);
-    void remove_course(string course);
+    string search_course(int CRN);
+    void add_course(int CRN);
+    void remove_course(int CRN);
     void print_schedule();
 
     //Destructor

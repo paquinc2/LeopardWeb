@@ -10,14 +10,14 @@ public:
     Admin(string first, string last, int id);
 
     //Methods
-    string search_course(string search);
-    string search_roster(string search);
-    void add_course(string course);
-    void remove_course(string course);
+    string search_course(int CRN);
+    string search_roster(int CRN);
+    void add_course();
+    void remove_course();
     void add_user();
-    void remove_user(int id);
+    void remove_user(int ID);
     void add_student();
-    void remove_student(int id);
+    void remove_student(int ID);
     void print_roster();
     void print_courses();
 
